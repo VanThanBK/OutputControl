@@ -1,0 +1,27 @@
+#pragma once
+
+#define RELAY_1_PIN PB7
+#define RELAY_2_PIN PB6
+#define RELAY_3_PIN PB5
+#define RELAY_4_PIN PB4
+
+#define DIGITAL_OUT_1_PIN PB9
+#define DIGITAL_OUT_2_PIN PB8
+#define DIGITAL_OUT_3_PIN PA2
+#define DIGITAL_OUT_4_PIN PA1
+
+#define PWM_OUT_1_PIN PB1
+#define PWM_OUT_2_PIN PB0
+
+#define SERVO_1_PIN PA7
+#define SERVO_2_PIN PA6
+
+#define DIGITAL_IN_1_PIN PB15
+#define DIGITAL_IN_2_PIN PB14
+#define DIGITAL_IN_3_PIN PB13
+#define DIGITAL_IN_4_PIN PB10
+#define DIGITAL_IN_5_PIN PB11
+#define DIGITAL_IN_6_PIN PB12
+
+#define ANALOG_IN_1_PIN PA4
+#define ANALOG_IN_2_PIN PA5
