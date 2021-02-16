@@ -7,14 +7,13 @@
 	#include "WProgram.h"
 #endif
 
-#define TEENSY_PORT Serial
+#define TEENSY_PORT Serial1
 
 #include "PinInControl.h"
 
 class GCodeSendClass
 {
-private:
-    /* data */
+
 public:
    void Init();
    void Execute();

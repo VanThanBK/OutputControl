@@ -162,4 +162,26 @@ void PinOutControlClass::Servo_Write(uint8_t index, uint8_t servoValue)
     }
 }
 
+void PinOutControlClass::RL_Reset()
+{
+    digitalWrite(RELAY_1_PIN, 0);
+    digitalWrite(RELAY_2_PIN, 0);
+    digitalWrite(RELAY_3_PIN, 0);
+    digitalWrite(RELAY_4_PIN, 0);
+}
+
+void PinOutControlClass::Digital_Reset()
+{
+    digitalWrite(DIGITAL_OUT_1_PIN, 0);
+    digitalWrite(DIGITAL_OUT_2_PIN, 0);
+    digitalWrite(DIGITAL_OUT_3_PIN, 0);
+    digitalWrite(DIGITAL_OUT_4_PIN, 0);
+}
+
+void PinOutControlClass::Pwm_Reset()
+{
+    pwmWrite(PWM_OUT_1_PIN, 0);
+    pwmWrite(PWM_OUT_2_PIN, 0);
+}
+
 PinOutControlClass PinOutControl;

@@ -14,7 +14,7 @@
 #include "PinInControl.h"
 
 #define BAUDRATE 115200
-#define TEENSY_PORT Serial
+#define TEENSY_PORT Serial1
 //using namespace std;
 
 class GCodeReceiverClass

@@ -5,10 +5,12 @@
 #include "GCodeSend.h"
 
 void setup() {
+  disableDebugPorts();
   PinOutControl.Init();
   PinInControl.Init();
   GCodeReceiver.Init();
-  GCodeSend.Init();
+  //GCodeSend.Init();
+  TEENSY_PORT.println("R0 0");
 }
 
 void loop() {

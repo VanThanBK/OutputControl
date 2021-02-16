@@ -12,8 +12,6 @@
 
 class PinOutControlClass
 {
-private:
-    /* data */
 public:
     void Init();
 
@@ -31,7 +29,7 @@ public:
     void RL_Reset();
     void Digital_Reset();
     void Pwm_Reset();
-    void Servo_Reset();
+    
 private:
     Servo Servo_1;
     Servo Servo_2;

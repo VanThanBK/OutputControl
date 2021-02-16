@@ -9,7 +9,7 @@ void GCodeReceiverClass::Init()
 	TEENSY_PORT.begin(BAUDRATE);
 	TEENSY_PORT.setTimeout(100);
 	receiveString.reserve(100);
-
+	
 	isStringComplete = false;
 	receiveString = "";
 	keyReset();
@@ -53,6 +53,25 @@ void GCodeReceiverClass::executeCommand()
 {
 	switch (keyValue)
 	{
+	case 'T':
+		if (Value == 1)
+		{
+			switch (keyIndex)
+			{
+			case 0:
+				PinOutControl.RL_Reset();
+				break;
+			case 1:
+				PinOutControl.Digital_Reset();
+				break;
+			case 2:
+				PinOutControl.Pwm_Reset();
+				break;
+			default:
+				break;
+			}
+		}
+		break;	
 	case 'R':
 		if (Value == 0)
 		{

@@ -11,8 +11,6 @@
 
 class PinInControlClass
 {
-private:
-    /* data */
 public:
     void Init();
     bool Digital_Read(uint8_t index);

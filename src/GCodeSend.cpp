@@ -37,7 +37,7 @@ void GCodeSendClass::Execute()
         if (PinInControl.Digital_Read(i) != Last_DInAray[i])
         {
             Last_DInAray[i] = PinInControl.Digital_Read(i);
-            TEENSY_PORT.print("I");
+            TEENSY_PORT.print("J");
 		    TEENSY_PORT.print(String(i) + " ");
 		    TEENSY_PORT.println(Last_DInAray[i]);
         }
@@ -52,7 +52,7 @@ void GCodeSendClass::Execute()
             lastTime_A[i] = micros();
             uint16_t a_Read;
             a_Read = PinInControl.Analog_Read(i);
-            TEENSY_PORT.print("A");
+            TEENSY_PORT.print("B");
 		    TEENSY_PORT.print(String(i) + " ");
 		    TEENSY_PORT.println(a_Read);
         }
