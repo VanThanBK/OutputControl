@@ -17,13 +17,13 @@ class GCodeSendClass
 public:
    void Init();
    void Execute();
-   uint32_t f_feedback_A[2];
-   bool IsAutoFeedback_A[2];
-   bool IsAutoFeedback_D[6];
+   uint32_t f_feedback_A[4];
+   bool IsAutoFeedback_A[4];
+   bool IsAutoFeedback_D[10];
 private:
-    bool Last_DInAray[6];
+    bool Last_DInAray[10];
 
-    uint32_t lastTime_A[2];
+    uint32_t lastTime_A[4];
 };
 
 extern GCodeSendClass GCodeSend;

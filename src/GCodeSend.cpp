@@ -2,7 +2,7 @@
 
 void GCodeSendClass::Init()
 {
-    for (uint8_t i = 0; i < 6; i++)
+    for (uint8_t i = 0; i < 8; i++)
     {
         Last_DInAray[i] = PinInControl.Digital_Read(i);
         TEENSY_PORT.print("I");
@@ -13,7 +13,7 @@ void GCodeSendClass::Init()
         IsAutoFeedback_D[i] = true;
     }
 
-    for (uint8_t i = 0; i < 2; i++)
+    for (uint8_t i = 0; i < 4; i++)
     {
         uint16_t a_Read;
         a_Read = PinInControl.Analog_Read(i);
@@ -30,7 +30,7 @@ void GCodeSendClass::Init()
 
 void GCodeSendClass::Execute()
 {
-    for (uint8_t i = 0; i < 6; i++)
+    for (uint8_t i = 0; i < 10; i++)
     {
         if (!IsAutoFeedback_D[i]) continue;
 
@@ -43,7 +43,7 @@ void GCodeSendClass::Execute()
         }
     }
 
-    for (uint8_t i = 0; i < 2; i++)
+    for (uint8_t i = 0; i < 4; i++)
     {
         if (!IsAutoFeedback_A[i]) continue;
 

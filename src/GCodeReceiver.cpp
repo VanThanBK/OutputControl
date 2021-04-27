@@ -1,6 +1,6 @@
-// 
-// 
-// 
+//
+//
+//
 
 #include "GCodeReceiver.h"
 
@@ -9,7 +9,7 @@ void GCodeReceiverClass::Init()
 	TEENSY_PORT.begin(BAUDRATE);
 	TEENSY_PORT.setTimeout(100);
 	receiveString.reserve(100);
-	
+
 	isStringComplete = false;
 	receiveString = "";
 	keyReset();
@@ -33,13 +33,21 @@ void GCodeReceiverClass::Execute()
 		}
 	}
 
-	if (!isStringComplete) return;
+	if (!isStringComplete)
+		return;
 
-	keyValue = receiveString[0];
-	keyIndex = receiveString.substring(1,2).toInt();
-	if (receiveString.length() > 3)
+	uint8_t index_buffer = receiveString.indexOf(' ');
+
+	if (index_buffer >= 0)
 	{
-		Value = receiveString.substring(3).toFloat();
+		keyValue = receiveString[0];
+		keyIndex = receiveString.substring(1, index_buffer).toInt();
+		Value = receiveString.substring(index_buffer + 1).toFloat();
+	}
+	else
+	{
+		keyValue = receiveString[0];
+		keyIndex = receiveString.substring(1).toInt();
 	}
 
 	executeCommand();
@@ -58,9 +66,6 @@ void GCodeReceiverClass::executeCommand()
 		{
 			switch (keyIndex)
 			{
-			case 0:
-				PinOutControl.RL_Reset();
-				break;
 			case 1:
 				PinOutControl.Digital_Reset();
 				break;
@@ -70,16 +75,6 @@ void GCodeReceiverClass::executeCommand()
 			default:
 				break;
 			}
-		}
-		break;	
-	case 'R':
-		if (Value == 0)
-		{
-			PinOutControl.RL_OFF(keyIndex);
-		}
-		else
-		{
-			PinOutControl.RL_ON(keyIndex);
 		}
 		break;
 	case 'D':
@@ -104,13 +99,6 @@ void GCodeReceiverClass::executeCommand()
 		{
 			uint16_t value = (uint16_t)Value;
 			PinOutControl.Pwm_Write(keyIndex, value);
-		}
-		break;
-	case 'S':
-		if (Value >= 0)
-		{
-			uint8_t value = (uint8_t)Value;
-			PinOutControl.Servo_Write(keyIndex, value);
 		}
 		break;
 	case 'I':
