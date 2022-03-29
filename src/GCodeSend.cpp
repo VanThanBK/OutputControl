@@ -6,8 +6,8 @@ void GCodeSendClass::Init()
     {
         Last_DInAray[i] = PinInControl.Digital_Read(i);
         TEENSY_PORT.print("I");
-		TEENSY_PORT.print(String(i) + " ");
-		TEENSY_PORT.println(Last_DInAray[i]);
+        TEENSY_PORT.print(String(i) + " ");
+        TEENSY_PORT.println(Last_DInAray[i]);
         delayMicroseconds(100);
 
         IsAutoFeedback_D[i] = true;
@@ -18,8 +18,8 @@ void GCodeSendClass::Init()
         uint16_t a_Read;
         a_Read = PinInControl.Analog_Read(i);
         TEENSY_PORT.print("A");
-		TEENSY_PORT.print(String(i) + " ");
-		TEENSY_PORT.println(a_Read);
+        TEENSY_PORT.print(String(i) + " ");
+        TEENSY_PORT.println(a_Read);
         delayMicroseconds(100);
 
         IsAutoFeedback_A[i] = true;
@@ -32,20 +32,22 @@ void GCodeSendClass::Execute()
 {
     for (uint8_t i = 0; i < 10; i++)
     {
-        if (!IsAutoFeedback_D[i]) continue;
+        if (!IsAutoFeedback_D[i])
+            continue;
 
         if (PinInControl.Digital_Read(i) != Last_DInAray[i])
         {
             Last_DInAray[i] = PinInControl.Digital_Read(i);
             TEENSY_PORT.print("J");
-		    TEENSY_PORT.print(String(i) + " ");
-		    TEENSY_PORT.println(Last_DInAray[i]);
+            TEENSY_PORT.print(String(i) + " ");
+            TEENSY_PORT.println(Last_DInAray[i]);
         }
     }
 
     for (uint8_t i = 0; i < 4; i++)
     {
-        if (!IsAutoFeedback_A[i]) continue;
+        if (!IsAutoFeedback_A[i])
+            continue;
 
         if (micros() - lastTime_A[i] > f_feedback_A[i])
         {
@@ -53,10 +55,12 @@ void GCodeSendClass::Execute()
             uint16_t a_Read;
             a_Read = PinInControl.Analog_Read(i);
             TEENSY_PORT.print("B");
-		    TEENSY_PORT.print(String(i) + " ");
-		    TEENSY_PORT.println(a_Read);
+            TEENSY_PORT.print(String(i) + " ");
+            TEENSY_PORT.println(a_Read);
         }
     }
+    //delay(1000);
+    //TEENSY_PORT.println("I1 1");
 }
 
 GCodeSendClass GCodeSend;
