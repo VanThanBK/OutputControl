@@ -10,7 +10,7 @@ void PinInControlClass::Init()
     pinMode(E_STOP1_PIN, INPUT);
     pinMode(E_STOP2_PIN, INPUT);
 
-    for (uint8_t i = 0; i < 4; i++)
+    for (uint8_t i = 0; i < 2; i++)
     {
         pinMode(a_pin_array[i], INPUT_ANALOG);
     }
