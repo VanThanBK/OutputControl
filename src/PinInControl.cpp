@@ -2,7 +2,7 @@
 
 void PinInControlClass::Init()
 {
-    for (uint8_t i = 0; i < 10; i++)
+    for (uint8_t i = 0; i < 6; i++)
     {
         pinMode(i_pin_array[i], INPUT);
     }

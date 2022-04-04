@@ -28,8 +28,8 @@ private:
     Servo Servo_1;
     Servo Servo_2;
 
-    uint8_t d_pin_array[16] = {D_0_PIN, D_1_PIN, D_2_PIN, D_3_PIN, D_4_PIN, D_5_PIN, D_6_PIN, D_7_PIN, D_8_PIN, D_9_PIN, D_10_PIN, D_11_PIN, D_12_PIN, D_13_PIN, D_14_PIN, D_15_PIN};
-    uint8_t d_pin_pwm_array[16] = {D_0_PWM_PIN, D_1_PWM_PIN, D_2_PWM_PIN, D_3_PWM_PIN, D_4_PWM_PIN, D_5_PWM_PIN, D_6_PWM_PIN, D_7_PWM_PIN, D_8_PWM_PIN, D_9_PWM_PIN, D_10_PWM_PIN, D_11_PWM_PIN, D_12_PWM_PIN, D_13_PWM_PIN, D_14_PWM_PIN, D_15_PWM_PIN};
+    uint8_t d_pin_array[8] = {D_0_PIN, D_1_PIN, D_2_PIN, D_3_PIN, D_4_PIN, D_5_PIN, D_6_PIN, D_7_PIN};
+    uint8_t d_pin_pwm_array[8] = {D_0_PWM_PIN, D_1_PWM_PIN, D_2_PWM_PIN, D_3_PWM_PIN, D_4_PWM_PIN, D_5_PWM_PIN, D_6_PWM_PIN, D_7_PWM_PIN};
 };
 
 extern PinOutControlClass PinOutControl;
