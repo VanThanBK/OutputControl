@@ -16,4 +16,7 @@ void setup() {
 void loop() {
   GCodeReceiver.Execute();
   GCodeSend.Execute();
+
+  //TEENSY_PORT.println("R0 0");
+  //delay(500);
 }
