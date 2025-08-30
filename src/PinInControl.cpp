@@ -25,7 +25,7 @@ bool PinInControlClass::Digital_Read(uint8_t index)
         {
             __counter++;
         }
-        delayMicroseconds(1);
+    delayMicroseconds(3); // widened to better space samples
     }
 
     if (__counter >= 5)
@@ -40,7 +40,24 @@ bool PinInControlClass::Digital_Read(uint8_t index)
 
 uint16_t PinInControlClass::Analog_Read(uint8_t index)
 {
-    return analogRead(a_pin_array[index]);
+    // Collect a small moving window of samples to smooth noise.
+    const uint8_t WINDOW = 8; // number of samples to average
+    const uint16_t STABLE_THRESHOLD = 6; // minimal change to accept new stable value
+    uint16_t raw = (uint16_t)analogRead(a_pin_array[index]);
+    analog_accum[index] += raw;
+    analog_sample_count[index]++;
+    if (analog_sample_count[index] >= WINDOW) {
+        uint16_t avg = (uint16_t)(analog_accum[index] / WINDOW);
+        // Debounce: only update last_stable if difference exceeds threshold
+        uint16_t prev = analog_last_stable[index];
+        uint16_t diff = (avg > prev) ? (avg - prev) : (prev - avg);
+        if (diff >= STABLE_THRESHOLD) {
+            analog_last_stable[index] = avg;
+        }
+        analog_accum[index] = 0;
+        analog_sample_count[index] = 0;
+    }
+    return analog_last_stable[index];
 }
 
 PinInControlClass PinInControl;

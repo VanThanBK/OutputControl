@@ -13,7 +13,7 @@
 #include "PinOutControl.h"
 #include "PinInControl.h"
 
-#define BAUDRATE 115200
+#define BAUDRATE 921600
 #define TEENSY_PORT Serial1
 //using namespace std;
 
@@ -23,15 +23,14 @@ public:
 	void Init();
 	void Execute();
 private:
-	String gcodeCommand;
-	String receiveString;
-	bool isStringComplete;
-	char keyValue;
-	int keyIndex;
-	float Value;
-
-	void executeCommand();
-	void keyReset();
+	// New buffered reception with CRC16
+	static const size_t RX_BUFFER_SIZE = 96;
+	char rx_buf[RX_BUFFER_SIZE];
+	size_t rx_len = 0;
+	bool is_frame_complete = false;
+	uint32_t last_rx_us = 0;
+	void parseFrame(const char* payload, size_t len);
+	void handleControlFrame(const char* payload, size_t len);
 };
 
 extern GCodeReceiverClass GCodeReceiver;

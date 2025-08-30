@@ -10,6 +10,7 @@
 #define TEENSY_PORT Serial1
 
 #include "PinInControl.h"
+#include "CRC16.h"
 
 class GCodeSendClass
 {
@@ -24,6 +25,11 @@ private:
     bool Last_DInAray[6];
 
     uint32_t lastTime_A[2];
+public:
+    // retransmission buffer for last telemetry frame
+    char last_tx_payload[48];
+    int last_tx_len = 0;
+    uint8_t last_tx_retry = 0;
 };
 
 extern GCodeSendClass GCodeSend;
